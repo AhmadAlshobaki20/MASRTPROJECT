@@ -1,0 +1,79 @@
+.Services{
+  display: flex;
+  padding: 30px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: space-around;
+  align-items: center;
+  background: #262543;  
+  color:white;
+  height: 270px;
+}
+#service-title{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #20b3b3;
+}
+
+.Why-Are-we{
+  display: flex;
+  flex-direction: column;
+}
+.Why-Are-we h2{
+  width: 150px;
+  margin-bottom:10px;
+}
+.Why-Are-we p{
+  width: 250px;
+  color: rgb(209, 209, 209);
+}
+
+.teacher-cont{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teacher-cont img{
+  width: 60px;
+  height: 60px;
+}
+.teacher-cont p {
+  width: 180px;
+  color: rgb(209, 209, 209);
+}
+.online-cont{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.online-cont img{
+  width: 60px;
+  height: 60px;
+}
+
+.online-cont p {
+  width: 180px;
+  color: rgb(209, 209, 209);
+}
+.services-24{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.services-24 img{
+  width: 60px;
+  height: 60px;
+}
+.services-24 p {
+  width: 180px;
+  color: rgb(209, 209, 209);
+}
+
+@media only screen and (max-width: 728px) {
+  .Services{
+    display: grid;
+    height: fit-content;
+  }
+}

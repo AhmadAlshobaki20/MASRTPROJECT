@@ -1,0 +1,98 @@
+/* start Header style */
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 60px;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  position: relative;
+}
+.Header nav {
+  display: flex;
+}
+#logo {
+  width: 40px;
+}
+.Header nav ul {
+  display: flex;
+  gap: 20px;
+}
+.Header nav ul li {
+  list-style-type: none;
+}
+.Header nav ul li a {
+  text-decoration: none;
+  color: var(--black-color);
+  font-size: 2vmin;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  position: relative;
+}
+
+.Header nav ul li a:hover::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: black;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+#get-app {
+  background: #20b3b3;
+  color: white;
+  width: 100px;
+  padding: 5px;
+  margin-left: 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: larger;
+  font-weight: 600;
+}
+
+#minu-burger {
+  display: none;
+}
+@media (max-width: 728px) {
+  nav {
+    position: absolute;
+    background-color: rgb(221, 221, 221);
+    right: 1000px;
+    top: 55px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease all;
+    
+  }
+  #minu-burger {
+    display: block;
+  }
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+nav.active {
+  left: 0;
+  transition: 0.2s ease all;
+}
+
+dl, ol, ul {
+  margin-top: 0; 
+  margin-bottom: 0;
+}

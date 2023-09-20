@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo&family=Catamaran&family=Dancing+Script&family=Dosis&family=Inter&family=Nunito&family=Pacifico&family=Poppins:ital@0;1&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #7884d5;
+  --black-color: #000;
+  --white-color: #fff;
+    font-family: 'Cairo', sans-serif;
+    font-family: 'Catamaran', sans-serif;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Pacifico', cursive;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* body{ */
+  /* border: 1px solid rgb(224, 224, 224); */
+  /* width: 90%; */
+  /* margin: 0 auto; */
+/* } */

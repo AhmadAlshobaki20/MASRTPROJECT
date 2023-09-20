@@ -1,0 +1,19 @@
+.Persona{
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-around;
+}
+#Persona-text {
+  width: 400px;
+  font-size: 3vmin;
+}
+#Persona-image{
+  width: 40vmin;
+}
+@media only screen and (max-width: 900px) {
+  .Persona {
+    flex-direction: column;
+}
+}

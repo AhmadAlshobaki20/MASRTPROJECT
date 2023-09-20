@@ -1,0 +1,41 @@
+.Contact {
+  padding: 50px 0 50px 0;
+}
+
+.contuctus {
+  padding: 50px 0 50px 0;
+  min-height: 300px;
+  color:#20b3b3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Cairo";
+  max-height: fit-content;
+}
+
+.contuctus div {
+  text-align: center;
+}
+.contuctus .mail i, .contuctus .phone i, .contuctus .location i{
+  width: 100px;
+  height: 100px;
+  font-size: 25px;
+  background: #20b3b3;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: auto;
+}
+.contuctus .mail:hover i, .contuctus .phone:hover i, .contuctus .location:hover i{
+  background-color: #080e46;
+}
+
+#conact-head{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top:50px;
+}
