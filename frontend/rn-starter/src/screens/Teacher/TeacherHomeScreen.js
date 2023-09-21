@@ -13,18 +13,19 @@ import Reservation from "../../components/Reservation";
 import Rating from "../../components/Rating";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
+import { DataContext } from "../context/context";
 
 const TeacherHomeScreen = ({ navigation }) => {
-  const [teacherInfo, setTeacherInfo] = useState({});
-  useEffect(() => {
-    getTeacherData();
-  }, []);
+  // const [teacherInfo, setTeacherInfo] = useState({});
+  // useEffect(() => {
+  //   getTeacherData();
+  // }, []);
 
-  console.log();
-  const getTeacherData = async () => {
-    const teacherInformation = await AsyncStorage.getItem("teacher");
-    setTeacherInfo(JSON.parse(teacherInformation));
-  };
+  // const getTeacherData = async () => {
+  //   const teacherInformation = await AsyncStorage.getItem("teacher");
+  //   setTeacherInfo(JSON.parse(teacherInformation));
+  // };
+  const {teacherInfo} = useContext(DataContext); 
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -40,7 +41,9 @@ const TeacherHomeScreen = ({ navigation }) => {
           </TouchableOpacity>
           <View>
             <Text>Good morning</Text>
-            <Text style={styles.nameStyle}>{teacherInfo.username}</Text>
+            <Text style={styles.nameStyle}>
+              {teacherInfo.username}
+            </Text>
             <View style={styles.HeaderIcon}>
               <TouchableOpacity
                 onPress={() => {
@@ -108,7 +111,8 @@ const TeacherHomeScreen = ({ navigation }) => {
           <View style={styles.featureStyle}>
             <Reservation
               onPress={() => {
-                navigation.navigate("Request", {"teacher":teacherInfo});
+                navigation.navigate("Request", { teacher: teacherInfo });
+                console.log("%^%^%^%^%^", teacherInfo)
               }}
             />
             <Rating />

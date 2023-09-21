@@ -6,25 +6,24 @@ import api from "../../api";
 import { DataContext } from "./context/context";
 
 const Request = ({ navigation }) => {
-  const { reservations, Accept, Reject ,getAllReservation} = useContext(DataContext);
+  const { reservations, Accept, Reject, getAllReservation } =
+    useContext(DataContext);
+    
   const teacherInfo = navigation.getParam("teacher");
-  console.log(teacherInfo);
-  useEffect(()=>{
-    getAllReservation()
-  },[])
-  const specificReservation = reservations.filter((reservation) => {
-    if (teacherInfo._id == reservation._id)
-      console.log(teacherInfo._id, reservation._id);
+  console.log("#@#@#@#@#@#@", teacherInfo);
+
+  const specificReservation = reservations.filter((teacher) => {
+    return teacherInfo._id == teacher.teacherId;
   });
-  console.log("specificReservation", specificReservation);
-  console.log(teacherInfo);
-  return (
+
+  useEffect(() => {
+    getAllReservation();
+  }, []);
+  return specificReservation.length ? (
     <View style={styles.container}>
       <FlatList
-        keyExtractor={(item) => {
-          item._id;
-        }}
-        data={reservations}
+        data={specificReservation}
+        keyExtractor={(teacher) => teacher._id}
         renderItem={({ item }) => {
           return (
             <View style={styles.wrap}>
@@ -61,6 +60,10 @@ const Request = ({ navigation }) => {
           );
         }}
       ></FlatList>
+    </View>
+  ) : (
+    <View style={styles.container}>
+      <Text style={{ fontSize: 20 }}>There is no reservations</Text>
     </View>
   );
 };

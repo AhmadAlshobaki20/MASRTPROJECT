@@ -12,6 +12,18 @@ const DataProvider = ({ children }) => {
   const [loginInfo, setLoginInfo] = useState({});
   const [reservationInfo, setReservationInfo] = useState({});
   const [reservations, setReservations] = useState([]);
+  const [teacherInfo, setTeacherInfo] = useState({});
+  const [StudentInfo, setStudentInfo] = useState({});
+
+  // const checkToken = async () => {
+  //   const token = await AsyncStorage.getItem("teacher");
+  //   if (token) {
+  //     setIsVerify("TeacherHomeScreen");
+  //   } else {
+  //     setIsVerify("secondSplash");
+  //   }
+  //   return x;
+  // };
 
   const storeStudentData = async (value) => {
     try {
@@ -43,6 +55,7 @@ const DataProvider = ({ children }) => {
     try {
       const response = await api.get("/api/v1/teachers");
       setTeachers(response.data.data.teachers);
+      console.log(response.data.data.teachers);
     } catch (error) {
       console.log(error);
     }
@@ -61,10 +74,13 @@ const DataProvider = ({ children }) => {
     }
   };
   // Student login
-  const studentLogin = async () => {
+  const studentLogin = async ({ navigation }) => {
     try {
       const response = await api.post("/api/v1/students/login", loginInfo);
       studentAuthentication(response.data.token);
+      if (response.data.token) {
+        navigation.navigate("StudentHomeScreen");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -77,7 +93,8 @@ const DataProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      storeStudentData(response.data.user);
+      storeStudentData(token);
+      setStudentInfo(response.data.user);
     } catch (error) {
       console.log(error);
     }
@@ -85,13 +102,23 @@ const DataProvider = ({ children }) => {
 
   // Add Reservation
   const addReservation = async () => {
-    const response = await api.post(`/api/v1/reservation`, reservationInfo);
+    console.log("reservationInfo =>", reservationInfo);
+    try {
+      const response = await api.post(`/api/v1/reservation`, reservationInfo);
+      console.log("*&*&*&*&*&*&*&*&", response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //Get All Reservations
   const getAllReservation = async () => {
-    const response = await api.get(`/api/v1/reservation`);
-    setReservations(response.data.data.AllReservation);
+    try {
+      const response = await api.get(`/api/v1/reservation`);
+      setReservations(response.data.data.AllReservation);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Student register
@@ -101,17 +128,21 @@ const DataProvider = ({ children }) => {
         "/api/v1/teachers/register",
         registerInfo
       );
-      console.log("register response is :", response.data);
+      // console.log("register response is :", response.data);
     } catch (err) {
       console.log(err);
     }
   };
   // Student login
-  const teacherLogin = async () => {
+  const teacherLogin = async ({ navigation }) => {
     try {
       const response = await api.post("/api/v1/teachers/login", loginInfo);
-      teacherAuthentication(response.data.token);
-      console.log("response.data.token ====== >>>>>>>>>", response.data.token);
+      await teacherAuthentication(response.data.token);
+      if (response.data.token) {
+        navigation.navigate("TeacherHomeScreen");
+      } else {
+        return;
+      }
     } catch (err) {
       console.log(err);
     }
@@ -125,8 +156,9 @@ const DataProvider = ({ children }) => {
           Authorization: token,
         },
       });
-      storeTeacherData(response.data);
-      console.log("Teacher data === ", response);
+      storeTeacherData(token);
+      setTeacherInfo(response.data.teacher);
+      // console.log("Teacher data === ", response.data.teacher);
     } catch (error) {
       console.log(error);
     }
@@ -144,7 +176,7 @@ const DataProvider = ({ children }) => {
       `/api/v1/reservation/reject-reservation/${resId}`,
       { status: "rejected" }
     );
-    console.log(response.data);
+    // console.log(response.data);
   };
 
   const dataToShare = {
@@ -166,6 +198,8 @@ const DataProvider = ({ children }) => {
     reservations,
     Accept,
     Reject,
+    teacherInfo,
+    StudentInfo,
   };
   return (
     <DataContext.Provider value={dataToShare}>{children}</DataContext.Provider>

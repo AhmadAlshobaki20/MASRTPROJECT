@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
+
 const secondSplash = ({ navigation }) => {
+
   return (
     <View style={Style.container}>
       <Image
@@ -19,7 +21,7 @@ const secondSplash = ({ navigation }) => {
       <TouchableOpacity
         style={Style.buttonStyle}
         title="next"
-        onPress={() => {
+        onPress={async () => {
           navigation.navigate("RegisterAs");
         }}
       >

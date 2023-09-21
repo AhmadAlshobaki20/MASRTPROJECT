@@ -30,7 +30,8 @@ const ReservationPage = ({ navigation }) => {
             }}
             onDayPress={(date) => {
               setSelectDate(date.dateString);
-              handleReservationForm("createAt", date.dateString);
+              handleReservationForm("createAt", new Date(date.dateString).toDateString());
+              console.log(new Date(date.dateString).toDateString());
             }}
             markedDates={{
               [selectDate]: {
@@ -57,9 +58,8 @@ const ReservationPage = ({ navigation }) => {
             initialValue="+962"
             name="phone"
             onChangePhoneNumber={(value) => {
-              // Check if the 'value' parameter is not undefined
-              // Call handleReservationForm with the field name and value
-              handleReservationForm("phone", value);
+              handleReservationForm("phone", +value);
+              console.log(typeof +value);
             }}
           />
           <TouchableOpacity

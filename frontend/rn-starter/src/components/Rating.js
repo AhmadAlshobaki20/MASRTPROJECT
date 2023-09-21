@@ -6,7 +6,7 @@ import { Avatar } from "react-native-elements";
 const Rating = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Avatar source={require("../../assets/start.jpg")} rounded size="xlarge"/>
+      <Avatar source={require("../../assets/ima.jpg")} rounded size="xlarge" />
       <Text>Rating</Text>
     </TouchableOpacity>
   );

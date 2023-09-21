@@ -16,22 +16,23 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DataContext } from "../context/context";
 
 const StudentHomeScreen = ({ navigation }) => {
-  const [studentInfo, setStudentInfo] = useState({});
-  useEffect(() => {
-    getUserData();
-  }, []);
+  const {StudentInfo} = useContext(DataContext);
+  // const [StudentInfo, setStudentInfo] = useState({});
+  // // useEffect(() => {
+  //   // getUserData();
+  // }, []);
 
-  console.log();
-  const getUserData = async () => {
-    const studentInfo = await AsyncStorage.getItem("user");
-    setStudentInfo(JSON.parse(studentInfo));
-  };
+  // console.log();
+  // const getUserData = async () => {
+  //   const studentInfo = await AsyncStorage.getItem("user");
+  //   setStudentInfo(JSON.parse(studentInfo));
+  // };
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={()=>{
-            navigation.navigate("StudentProfile", {"student":studentInfo})
+            navigation.navigate("StudentProfile", {"student":StudentInfo})
           }}>
             <Avatar
               source={require("../../../assets/TeacherOffer.png")}
@@ -40,7 +41,7 @@ const StudentHomeScreen = ({ navigation }) => {
           </TouchableOpacity>
           <View>
             <Text>welcome to venom</Text>
-            <Text style={styles.nameStyle}>{studentInfo.username}</Text>
+            <Text style={styles.nameStyle}>{StudentInfo.username}</Text>
             <View style={styles.HeaderIcon}>
               <TouchableOpacity
                 onPress={() => {

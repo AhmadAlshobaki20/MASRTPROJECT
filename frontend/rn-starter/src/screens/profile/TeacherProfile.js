@@ -17,7 +17,7 @@ const TeacherProfile = ({navigation}) => {
           size="large"
         />
         <View>
-          <Text style={styles.textNameStyle}>{teacherInfo["teacher"].username}</Text>
+          <Text style={styles.textNameStyle}>{teacherInfo.username}</Text>
           <Text style={styles.textRoleStyle}>Teacher</Text>
         </View>
       </View>
@@ -29,7 +29,7 @@ const TeacherProfile = ({navigation}) => {
             color="#3386b9"
             style={styles.innerContactStyle}
           />
-          <Text>{teacherInfo["teacher"].phone}</Text>
+          <Text>{teacherInfo.phone}</Text>
         </View>
         <View style={styles.contactStyle}>
           <MaterialIcons
@@ -38,7 +38,7 @@ const TeacherProfile = ({navigation}) => {
             color="#3386b9"
             style={styles.innerContactStyle}
           />
-          <Text>{teacherInfo["teacher"].email}</Text>
+          <Text>{teacherInfo.email}</Text>
         </View>
       </View>
       <View style={{ alignItems: "center" }}>

@@ -18,16 +18,9 @@ exports.getAllReservation = async (req, res) => {
 };
 
 exports.addReservation = async (req, res) => {
+  console.log(req.body);
   try {
-    // // Assuming you have a student's name in the request body
-    const { studentName, date, teacherId } = req.body;
-
-    const reservation = new Reservation({
-      studentName,
-      date,
-      status: "pending",
-      teacherId: teacherId, // Assign the teacher's ID
-    });
+    const reservation = new Reservation(req.body);
     await reservation.save();
     return res.json({ message: reservation });
   } catch (error) {

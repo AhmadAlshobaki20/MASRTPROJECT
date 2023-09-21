@@ -6,7 +6,7 @@ import { Avatar } from "react-native-elements";
 const Reservation = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Avatar source={require("../../assets/images.jpg")} rounded size="xlarge"/>
+      <Avatar source={require("../../assets/res.jpg")} rounded size="xlarge"/>
       <Text>appintemnet</Text>
     </TouchableOpacity>
   );

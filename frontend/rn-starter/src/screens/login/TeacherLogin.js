@@ -55,13 +55,8 @@ export default function TeacherLogin({ navigation }) {
           </View>
           <TouchableOpacity
             style={Style.buttonStyle}
-            onPress={async () => {
-              teacherLogin();
-              // const teacher = await AsyncStorage.getItem("teacher");
-              // console.log("teacher = ", teacher);
-              // if (teacher) {
-                navigation.navigate("TeacherHomeScreen");
-              // }
+            onPress={() => {
+              teacherLogin({navigation})
             }}
           >
             <Text style={Style.btnText}>login</Text>

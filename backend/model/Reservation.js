@@ -14,6 +14,9 @@ const reservationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Student", // Reference to the Teacher model
   },
+  phone: {
+    type: Number,
+  },
 });
 
 const Reservation = mongoose.model("Reservation", reservationSchema);

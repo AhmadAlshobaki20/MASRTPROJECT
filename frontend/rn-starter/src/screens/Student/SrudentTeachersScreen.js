@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   FlatList,
@@ -16,8 +16,11 @@ const SrudentTeachersScreen = ({navigation}) => {
   const [searchText, setSearchText] = useState("");
   const [filteredTeachers, setFilteredTeachers] = useState();
 
-  const { Teachers } = useContext(DataContext);
+  const { Teachers,getAllTeachers } = useContext(DataContext);
 
+  useEffect(()=>{
+    getAllTeachers();
+  },[])
   const filterTeachers = (text) => {
     const filtered = Teachers.filter((teacher) =>
       teacher.name.toLowerCase().includes(text.toLowerCase())
