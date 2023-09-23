@@ -9,11 +9,7 @@ router.route("/register").post(authController.signUpTeacher);
 // login
 router.route("/login").post(authController.signInTeacher);
 
-router
-  .route("/afterLogin")
-  .post(authController.teacherProtect);
-
-
+router.route("/afterLogin").post(authController.teacherProtect);
 
 router
   .route("/")
@@ -30,5 +26,6 @@ router
   .route("/:teacherId/request/:studentId")
   .post(teacherController.studentRequest);
 
-
+router.route("/accept-teacher/:id").patch(authController.acceptTeacher);
+router.route("/reject-teacher/:id").patch(authController.rejectTeacher);
 module.exports = router;

@@ -5,6 +5,8 @@ import {
   MaterialIcons,
   FontAwesome5,
   MaterialCommunityIcons,
+  Ionicons,
+  FontAwesome,
 } from "@expo/vector-icons";
 import {} from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -14,47 +16,44 @@ import Rating from "../../components/Rating";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { DataContext } from "../context/context";
+import { SafeAreaView } from "react-navigation";
+import TeacherButtomNav from "../../components/TeacherButtom";
 
 const TeacherHomeScreen = ({ navigation }) => {
-  // const [teacherInfo, setTeacherInfo] = useState({});
-  // useEffect(() => {
-  //   getTeacherData();
-  // }, []);
-
-  // const getTeacherData = async () => {
-  //   const teacherInformation = await AsyncStorage.getItem("teacher");
-  //   setTeacherInfo(JSON.parse(teacherInformation));
-  // };
-  const {teacherInfo} = useContext(DataContext); 
+  const { teacherInfo } = useContext(DataContext);
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("TeacherProfile", {
-                teacherInfo: teacherInfo,
-              });
-            }}
-          >
-            <Avatar source={require("../../../assets/imag.png")} rounded />
-          </TouchableOpacity>
-          <View>
-            <Text>Good morning</Text>
-            <Text style={styles.nameStyle}>
-              {teacherInfo.username}
-            </Text>
+    <ScrollView style={{ flexGrow: 1, backgroundColor: "#3fc7ac" }}>
+      <SafeAreaView style={{ backgroundColor: "#3fc7ac", position: "sticky" }}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            {/* <View> */}
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity
+                style={{ marginRight: 15 }}
+                onPress={() => {
+                  navigation.navigate("TeacherProfile", {
+                    teacherInfo: teacherInfo,
+                  });
+                }}
+              >
+                <Avatar
+                  source={require("../../../assets/imag.png")}
+                  rounded
+                  style={{ height: 50, width: 50, objectFit: "contain" }}
+                />
+              </TouchableOpacity>
+              <View>
+                <Text>Good morning</Text>
+                <Text style={styles.nameStyle}>{teacherInfo.username}</Text>
+              </View>
+            </View>
             <View style={styles.HeaderIcon}>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("StudentTeachersScreen");
+                  navigation.navigate("Request", { teacher: teacherInfo });
                 }}
               >
-                <MaterialCommunityIcons
-                  name="bell-ring-outline"
-                  style={styles.icons}
-                  color="black"
-                />
+                <FontAwesome name="book" style={styles.icons} color="black" />
               </TouchableOpacity>
               <MaterialIcons
                 name="favorite-border"
@@ -62,67 +61,69 @@ const TeacherHomeScreen = ({ navigation }) => {
                 color="black"
               />
             </View>
+            {/* </View> */}
           </View>
-        </View>
-        <View style={styles.textInput}>
-          <Feather
-            name="search"
-            style={{ fontSize: 30, alignSelf: "center", color: "gray" }}
-            color="black"
-          />
-          <TextInput style={styles.input} placeholder="search" />
-        </View>
-        {/* <Text style={styles.caption}>special Offer</Text> */}
-        <View style={styles.sectionTow}>
-          <LinearGradient
-            // Button Linear Gradient
-            colors={["#000000", "#33b9ac"]}
-            start={{ x: 0, y: 0 }}
-            style={styles.offerStyle}
-          >
-            <Image
-              style={{
-                width: 140,
-                height: 120,
-                position: "absolute",
-                top: 10,
-                right: 20,
-                borderRadius: 10,
-              }}
-              source={require("../../../assets/imag.png")}
+          <View style={styles.textInput}>
+            <Feather
+              name="search"
+              style={{ fontSize: 30, alignSelf: "center", color: "gray" }}
+              color="black"
             />
-            <View
-              style={{
-                alignItems: "center",
-                position: "absolute",
-                top: 20,
-                left: 30,
-              }}
+            <TextInput style={styles.input} placeholder="search" />
+          </View>
+          {/* <Text style={styles.caption}>special Offer</Text> */}
+          <View style={styles.sectionTow}>
+            <LinearGradient
+              // Button Linear Gradient
+              colors={["#000000", "#33b9ac"]}
+              start={{ x: 0, y: 0 }}
+              style={styles.offerStyle}
             >
-              <Text style={styles.textOfferStyle}>Welcome</Text>
-              <Text style={styles.textOfferStyle}>To our application</Text>
-              <Text style={styles.textOfferStyle}>Venom</Text>
-            </View>
-          </LinearGradient>
-        </View>
+              <Image
+                style={{
+                  width: 140,
+                  height: 120,
+                  position: "absolute",
+                  top: 10,
+                  right: 20,
+                  borderRadius: 10,
+                }}
+                source={require("../../../assets/imag.png")}
+              />
+              <View
+                style={{
+                  alignItems: "center",
+                  position: "absolute",
+                  top: 20,
+                  left: 30,
+                }}
+              >
+                <Text style={styles.textOfferStyle}>Welcome</Text>
+                <Text style={styles.textOfferStyle}>To our application</Text>
+                <Text style={styles.textOfferStyle}>Venom</Text>
+              </View>
+            </LinearGradient>
+          </View>
 
-        <View>
-          <Text style={styles.caption}>Features</Text>
-          <View style={styles.featureStyle}>
-            <Reservation
-              onPress={() => {
-                navigation.navigate("Request", { teacher: teacherInfo });
-                console.log("%^%^%^%^%^", teacherInfo)
-              }}
-            />
-            <Rating />
+          <View>
+            <Text style={styles.caption}>Features</Text>
+            <View style={styles.featureStyle}>
+              <Reservation
+                onPress={() => {
+                  navigation.navigate("Request", { teacher: teacherInfo });
+                  console.log("%^%^%^%^%^", teacherInfo);
+                }}
+              />
+              <Rating />
+            </View>
+            <View style={styles.featureStyle}>
+              <Reservation />
+              <Rating />
+            </View>
           </View>
-          <View style={styles.featureStyle}>
-            <Reservation />
-            <Rating />
-          </View>
+          <TeacherButtomNav teacherInfo={teacherInfo} navigation={navigation} />
         </View>
-      </View>
+      </SafeAreaView>
     </ScrollView>
   );
 };
@@ -134,16 +135,17 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
     justifyContent: "space-between",
+    // marginTop:20
   },
   header: {
-    marginHorizontal: 20,
+    marginHorizontal: 30,
     marginTop: 30,
     flexDirection: "row",
+    justifyContent: "space-between",
   },
   HeaderIcon: {
     flexDirection: "row",
-    position: "absolute",
-    right: -150,
+    alignItems: "center",
   },
   nameStyle: {
     fontSize: 16,

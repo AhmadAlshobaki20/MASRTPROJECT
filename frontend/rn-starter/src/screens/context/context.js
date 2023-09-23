@@ -135,12 +135,13 @@ const DataProvider = ({ children }) => {
   };
   // Student login
   const teacherLogin = async ({ navigation }) => {
+    // console.log(teacherInfo.status);
     try {
       const response = await api.post("/api/v1/teachers/login", loginInfo);
       await teacherAuthentication(response.data.token);
-      if (response.data.token) {
+      if (response.data.token && teacherInfo.status != "pending") {
         navigation.navigate("TeacherHomeScreen");
-      } else {
+      } else {r
         return;
       }
     } catch (err) {

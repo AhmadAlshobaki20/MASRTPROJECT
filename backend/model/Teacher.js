@@ -49,6 +49,10 @@ const teacherSchema = mongoose.Schema({
   // Students: [{ type: mongoose.Schema.ObjectId, ref: "Students" }],
   reservation: [{ type: mongoose.Schema.ObjectId, ref: "Student" }],
   Subjects: [{ type: mongoose.Schema.ObjectId, ref: "" }],
+  status:{
+    type:String,
+    default:"pending"
+  }
 });
 
 // I want to hash password here the best place to do that

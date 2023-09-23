@@ -3,6 +3,8 @@ const Student = require("../model/Student");
 const Teacher = require("../model/Teacher");
 const jwt = require("jsonwebtoken");
 const promisify = require("util.promisify");
+const sendEmail = require("./sendEmail"); 
+
 const signing = (id, PRIVATE_KEY) => {
   return jwt.sign({ id: id }, PRIVATE_KEY, {
     expiresIn: process.env.JWT_EXPIRATION,
@@ -90,11 +92,51 @@ exports.studentProtect = async (req, res, next) => {
 
 // -------------------------------------------teacher functions-------------------------------------------
 
+// Accept Teacher
+exports.acceptTeacher = async (req, res, next) => {
+  sendEmail.sendEmail("accept");
+  try {
+    const teacher = await Teacher.findByIdAndUpdate(
+      req.params.id,
+      { status: req.body.status },
+      { new: true }
+    );
+    res.status(200).json({
+      acceptTeacher: teacher,
+    });
+  } catch (error) {
+    res.status,
+      json({
+        message: "accept failed",
+      });
+  }
+};
+
+// reject Teacher
+
+exports.rejectTeacher = async (req, res, next) => {
+  try {
+    const teacher = await Teacher.findByIdAndUpdate(
+      req.params.id,
+      { status: req.body.status },
+      { new: true }
+    );
+    res.status(200).json({
+      acceptTeacher: teacher,
+    });
+  } catch (error) {
+    res.status,
+      json({
+        message: "accept failed",
+      });
+  }
+};
+
 // teacher signUp
 exports.signUpTeacher = async (req, res) => {
+
   try {
     const teacher = await Teacher.create(req.body);
-
     const token = signing(teacher._id, process.env.PRIVATE_KEY);
     res.status(201).json({
       status: "success",

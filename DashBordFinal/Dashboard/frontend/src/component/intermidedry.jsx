@@ -5,6 +5,7 @@ import Sidebar from "./DashBoard2/Dashboard/Sidebar";
 import Header from "./DashBoard2/Dashboard/Header";
 import Students from "./DashBoard2/Dashboard/Student";
 import Teachers from "./DashBoard2/Dashboard/Teacher";
+import EditTeacher from "./DashBoard2/Dashboard/TeacherRequest";
 export {
   AdminDashboard,
   Login,
@@ -13,4 +14,5 @@ export {
   Header,
   Students,
   Teachers,
+  EditTeacher,
 };

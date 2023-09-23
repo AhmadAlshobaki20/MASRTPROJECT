@@ -4,7 +4,7 @@ import { Avatar } from "react-native-elements";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import api from "../../api";
 import { DataContext } from "./context/context";
-
+import TeacherButtomNav from "../components/TeacherButtom";
 const Request = ({ navigation }) => {
   const { reservations, Accept, Reject, getAllReservation } =
     useContext(DataContext);
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center",
   },
   wrap: {
     backgroundColor: "white",

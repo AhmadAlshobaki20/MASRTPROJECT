@@ -6,6 +6,7 @@ const contextBoard = createContext();
 
 const Provider = ({ children }) => {
   const navigate = useNavigate();
+  const [ArrayOfAcceptTeachers, setArrayOfAcceptTeachers] = useState([]);
   const [Admins, setAdmins] = useState([]);
   const [admin, setAdmin] = useState({
     username: "",
@@ -31,7 +32,7 @@ const Provider = ({ children }) => {
     Subjects: [],
     Students: [],
   });
-  const [Token, setToken] = useState(null);
+  // const [Token, setToken] = useState(null);
   useEffect(() => {
     getStudents();
     getTeachers();
@@ -127,6 +128,30 @@ const Provider = ({ children }) => {
     }
   };
 
+  // accept teacher
+  const acceptTeacher = async (techId) => {
+    try {
+      const response = await axios.patch(
+        `api/v1/teachers/accept-teacher/${techId}`,
+        { status: "accept" }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // reject teacher
+  const rejectTeacher = async (techId) => {
+    try {
+      const response = await axios.patch(
+        `api/v1/teachers/reject-teacher/${techId}`,
+        { status: "reject" }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const dataToShare = {
     getAllAdmin,
     admin,
@@ -136,11 +161,16 @@ const Provider = ({ children }) => {
     getStudents,
     Students,
     Teachers,
+    setTeachers,
     deleteStudent,
     deleteTeachers,
     getStudents,
     getTeachers,
     state,
+    acceptTeacher,
+    rejectTeacher,
+    ArrayOfAcceptTeachers,
+    setArrayOfAcceptTeachers,
   };
 
   return (

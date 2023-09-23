@@ -17,8 +17,10 @@ import Request from "./src/screens/Request";
 import Model from "./src/components/Model";
 import RegisterAs from "./src/screens/RegisterAs";
 import LoginAs from "./src/screens/LoginAs";
-import StudentProfile from './src/screens/profile/StudentProfile';
-import TeacherProfile from './src/screens/profile/TeacherProfile';
+import StudentProfile from "./src/screens/profile/StudentProfile";
+import TeacherProfile from "./src/screens/profile/TeacherProfile";
+import TeacherButtomNav from "./src/components/TeacherButtom";
+import StudentButtomNav from "./src/components/StudentButtom";
 const navigator = createStackNavigator(
   {
     HomeScreen,
@@ -38,18 +40,19 @@ const navigator = createStackNavigator(
     RegisterAs,
     LoginAs,
     StudentProfile,
-    TeacherProfile
+    TeacherProfile,
+    TeacherButtomNav,
+    StudentButtomNav
   },
   {
     initialRouteName: "firstSplash",
     defaultNavigationOptions: {
       title: "Venom",
+      headerShown: false, // Hide the default header for all screens
     },
   }
 );
-
 const Elements = createAppContainer(navigator);
-
 const app = () => {
   return (
     <DataProvider>
