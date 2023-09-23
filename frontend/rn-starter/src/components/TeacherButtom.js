@@ -6,13 +6,22 @@ import {
   Entypo,
   FontAwesome,
 } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 const TeacherButtomNav = ({ navigation, teacherInfo }) => {
   return (
     <SafeAreaView>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={()=>{
-          navigation.navigate("TeacherHomeScreen")
-        }}>
+      <LinearGradient
+        // Button Linear Gradient
+        colors={["#000000", "#33b9ac"]}
+        start={{ x: 0, y: 0 }}
+        style={styles.container}
+        >
+
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("TeacherHomeScreen");
+          }}
+        >
           <Entypo name="home" style={styles.iconStyle} />
         </TouchableOpacity>
         <TouchableOpacity
@@ -31,7 +40,7 @@ const TeacherButtomNav = ({ navigation, teacherInfo }) => {
         >
           <MaterialCommunityIcons name="account-box" style={styles.iconStyle} />
         </TouchableOpacity>
-      </View>
+      </LinearGradient>
     </SafeAreaView>
   );
 };
@@ -42,14 +51,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-around",
-    backgroundColor: "#01a8a8",
-    borderRadius: 20,
-    marginBottom: 10,
-    marginHorizontal: 20,
+    backgroundColor: "#12352f",
+    borderTopStartRadius:20,
+    borderTopEndRadius:20,
     padding: 5,
   },
   iconStyle: {
-    fontSize: 40,
+    fontSize: 30,
     color: "white",
   },
 });

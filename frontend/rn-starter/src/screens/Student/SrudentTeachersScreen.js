@@ -12,7 +12,8 @@ import {
 import { DataContext } from "../context/context";
 import { Avatar, Button, Icon } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import StudentButtomNav from "../../components/StudentButtom";
+import Service from "../../components/Service";
 const SrudentTeachersScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState("");
   const [filteredTeachers, setFilteredTeachers] = useState();
@@ -81,6 +82,7 @@ const SrudentTeachersScreen = ({ navigation }) => {
           numColumns={2}
           contentContainerStyle={styles.contentContainer}
         />
+        <StudentButtomNav/>
       </View>
       {/* </ScrollView> */}
     </SafeAreaView>

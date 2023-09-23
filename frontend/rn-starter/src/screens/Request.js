@@ -5,10 +5,11 @@ import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import api from "../../api";
 import { DataContext } from "./context/context";
 import TeacherButtomNav from "../components/TeacherButtom";
+import { SafeAreaView } from "react-native-safe-area-context";
 const Request = ({ navigation }) => {
   const { reservations, Accept, Reject, getAllReservation } =
     useContext(DataContext);
-    
+
   const teacherInfo = navigation.getParam("teacher");
   console.log("#@#@#@#@#@#@", teacherInfo);
 
@@ -20,47 +21,49 @@ const Request = ({ navigation }) => {
     getAllReservation();
   }, []);
   return specificReservation.length ? (
-    <View style={styles.container}>
-      <FlatList
-        data={specificReservation}
-        keyExtractor={(teacher) => teacher._id}
-        renderItem={({ item }) => {
-          return (
-            <View style={styles.wrap}>
-              <Image
-                source={{
-                  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShNCNPkntpX6DI5r10Oogle7zGzMfpEg_bYQ&usqp=CAU",
-                }}
-                style={styles.avatarStyle}
-              />
-              <View>
-                <Text>{item.studentName}</Text>
-                <Text>1:20 to 2:00</Text>
-                <Text>19/8/2022</Text>
-              </View>
-              <View style={styles.btnInfoStyle}>
-                <TouchableOpacity
-                  style={styles.acceptBtnStyle}
-                  onPress={() => {
-                    Accept(item._id);
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#4bd7ac" }}>
+      <View style={styles.container}>
+        <FlatList
+          data={specificReservation}
+          keyExtractor={(teacher) => teacher._id}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.wrap}>
+                <Image
+                  source={{
+                    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShNCNPkntpX6DI5r10Oogle7zGzMfpEg_bYQ&usqp=CAU",
                   }}
-                >
-                  <Text style={styles.btnTextStyle}>accept</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.rejectBtnStyle}
-                  onPress={() => {
-                    Reject(item._id);
-                  }}
-                >
-                  <Text style={styles.btnTextStyle}>reject</Text>
-                </TouchableOpacity>
+                  style={styles.avatarStyle}
+                />
+                <View>
+                  <Text>{item.studentName}</Text>
+                  <Text>1:20 to 2:00</Text>
+                  <Text>{item.createAt}</Text>
+                </View>
+                <View style={styles.btnInfoStyle}>
+                  <TouchableOpacity
+                    style={styles.acceptBtnStyle}
+                    onPress={() => {
+                      Accept(item._id);
+                    }}
+                  >
+                    <Text style={styles.btnTextStyle}>accept</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.rejectBtnStyle}
+                    onPress={() => {
+                      Reject(item._id);
+                    }}
+                  >
+                    <Text style={styles.btnTextStyle}>reject</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-            </View>
-          );
-        }}
-      ></FlatList>
-    </View>
+            );
+          }}
+        ></FlatList>
+      </View>
+    </SafeAreaView>
   ) : (
     <View style={styles.container}>
       <Text style={{ fontSize: 20 }}>There is no reservations</Text>

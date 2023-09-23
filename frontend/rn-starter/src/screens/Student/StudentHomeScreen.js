@@ -15,6 +15,9 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DataContext } from "../context/context";
 import { SafeAreaView } from "react-native-safe-area-context";
+import StudentButtomNav from "../../components/StudentButtom";
+import Ref from "../../components/ref";
+import Service from "../../components/Service";
 
 const StudentHomeScreen = ({ navigation }) => {
   const { StudentInfo } = useContext(DataContext);
@@ -30,7 +33,7 @@ const StudentHomeScreen = ({ navigation }) => {
   // };
   return (
     <ScrollView style={{ flex: 1 }}>
-      <SafeAreaView style={{backgroundColor:"#3b8bb7"}}>
+      <SafeAreaView style={{ backgroundColor: "#3b8bb7" }}>
         <View style={styles.container}>
           <View style={styles.header}>
             <TouchableOpacity
@@ -114,18 +117,32 @@ const StudentHomeScreen = ({ navigation }) => {
           <View>
             <Text style={styles.caption}>Features</Text>
             <View style={styles.featureStyle}>
-              <Teacher
+              <Service
+              image={require('../../../assets/1585587.jpg')}
+                title="Teachers"
                 onPress={() => {
                   navigation.navigate("StudentTeachersScreen");
                 }}
               />
-              <Subject />
+              <Service
+              image={require('../../../assets/download.jpg')}
+                title="Subject"
+                onPress={() => {
+                  navigation.navigate("");
+                }}
+              />
             </View>
             <View style={styles.featureStyle}>
-              <Teacher />
-              <Subject />
+            <Service
+              image={require('../../../assets/refeneces.png')}
+                title="References"
+                onPress={() => {
+                  navigation.navigate("");
+                }}
+              />
             </View>
           </View>
+          <StudentButtomNav />
         </View>
       </SafeAreaView>
     </ScrollView>

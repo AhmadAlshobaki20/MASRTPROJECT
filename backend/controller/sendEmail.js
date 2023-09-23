@@ -12,7 +12,7 @@ exports.sendEmail = async () => {
 
     const info = await transport.sendMail({
       from: process.env.EMAIL,
-      to: "laithalzbaidy@gmail.com",
+      to: "aalshobaki538@gmail.com",
       subject: "Response",
       text: "Your request has been accepted by the admin. You can now log in.",
     });

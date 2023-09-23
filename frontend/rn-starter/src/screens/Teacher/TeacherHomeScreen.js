@@ -18,12 +18,12 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { DataContext } from "../context/context";
 import { SafeAreaView } from "react-navigation";
 import TeacherButtomNav from "../../components/TeacherButtom";
-
+import Service from "../../components/Service";
 const TeacherHomeScreen = ({ navigation }) => {
   const { teacherInfo } = useContext(DataContext);
   return (
-    <ScrollView style={{ flexGrow: 1, backgroundColor: "#3fc7ac" }}>
-      <SafeAreaView style={{ backgroundColor: "#3fc7ac", position: "sticky" }}>
+    <ScrollView style={{ flexGrow: 1 }}>
+      <SafeAreaView style={{ backgroundColor: "#3fc7ac"}}>
         <View style={styles.container}>
           <View style={styles.header}>
             {/* <View> */}
@@ -108,17 +108,29 @@ const TeacherHomeScreen = ({ navigation }) => {
           <View>
             <Text style={styles.caption}>Features</Text>
             <View style={styles.featureStyle}>
-              <Reservation
+              <Service
+                title="Reservations"
+                image={require("../../../assets/res.jpg")}
                 onPress={() => {
                   navigation.navigate("Request", { teacher: teacherInfo });
-                  console.log("%^%^%^%^%^", teacherInfo);
                 }}
               />
-              <Rating />
+              <Service
+                title="Reservations"
+                image={require("../../../assets/ima.jpg")}
+                onPress={() => {
+                  navigation.navigate("Request", { teacher: teacherInfo });
+                }}
+              />
             </View>
             <View style={styles.featureStyle}>
-              <Reservation />
-              <Rating />
+              <Service
+                title="My Reservations"
+                image={require("../../../assets/schadual.png")}
+                onPress={() => {
+                  navigation.navigate("Request", { teacher: teacherInfo });
+                }}
+              />
             </View>
           </View>
           <TeacherButtomNav teacherInfo={teacherInfo} navigation={navigation} />
