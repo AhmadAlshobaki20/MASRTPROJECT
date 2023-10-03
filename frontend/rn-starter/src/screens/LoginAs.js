@@ -8,7 +8,7 @@ const LoginAs = ({ navigation }) => {
           style={styles.logoStyle}
           source={require("../../assets/student.png")}
         />
-        <Text style={styles.textStyle}>Venom</Text>
+        <Text style={styles.textStyle}>ShowBook</Text>
         <Text>login pages</Text>
       </View>
       <View style={{ alignItems: "center" }}>
@@ -36,9 +36,9 @@ const LoginAs = ({ navigation }) => {
           }}
         >
           <Text>
-              Do you have account ?{" "}
-              <Text style={styles.register}>create account</Text>
-            </Text>
+            Do you have account ?{" "}
+            <Text style={styles.register}>create account</Text>
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -85,5 +85,5 @@ const styles = StyleSheet.create({
   register: {
     margin: 10,
     color: "#3386b9",
-  }
+  },
 });

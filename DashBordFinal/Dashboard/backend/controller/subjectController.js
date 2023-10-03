@@ -20,7 +20,7 @@
 //     res.status(200).json({
 //       status:"success",
 //       data:{
-//         newSubject 
+//         newSubject
 //       }
 //     })
 //   } catch (error) {

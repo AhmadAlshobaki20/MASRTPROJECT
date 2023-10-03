@@ -1,7 +1,5 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import HomeScreen from "./src/screens/HomeScreen";
-import ImageScreen from "./src/screens/ImageScreen";
 import firstSplash from "./src/screens/splash/firstSplash";
 import secondSplash from "./src/screens/splash/secondSplah";
 import StudentLogin from "./src/screens/login/Studentlogin";
@@ -21,12 +19,12 @@ import StudentProfile from "./src/screens/profile/StudentProfile";
 import TeacherProfile from "./src/screens/profile/TeacherProfile";
 import TeacherButtomNav from "./src/components/TeacherButtom";
 import StudentButtomNav from "./src/components/StudentButtom";
+import ComponentStatusBar from "./src/components/stackBar";
+import TeacherReservation from "./src/screens/Teacher/TeachersReservation";
 const navigator = createStackNavigator(
   {
-    HomeScreen,
     firstSplash,
     secondSplash,
-    ImageScreen,
     StudentLogin,
     StudentRegister,
     TeacherLogin,
@@ -42,7 +40,8 @@ const navigator = createStackNavigator(
     StudentProfile,
     TeacherProfile,
     TeacherButtomNav,
-    StudentButtomNav
+    StudentButtomNav,
+    TeacherReservation,
   },
   {
     initialRouteName: "firstSplash",
@@ -56,6 +55,7 @@ const Elements = createAppContainer(navigator);
 const app = () => {
   return (
     <DataProvider>
+      <ComponentStatusBar />
       <Elements />
     </DataProvider>
   );

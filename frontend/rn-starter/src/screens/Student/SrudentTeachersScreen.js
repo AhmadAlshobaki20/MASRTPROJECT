@@ -82,7 +82,7 @@ const SrudentTeachersScreen = ({ navigation }) => {
           numColumns={2}
           contentContainerStyle={styles.contentContainer}
         />
-        <StudentButtomNav/>
+        {/* <StudentButtomNav/> */}
       </View>
       {/* </ScrollView> */}
     </SafeAreaView>

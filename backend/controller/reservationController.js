@@ -41,7 +41,6 @@ exports.acceptReservation = async (req, res) => {
     if (!reservation) {
       return res.status(404).json({ message: "Reservation not found" });
     }
-
     console.log(reservation);
 
     return res.json({ message: "Reservation accepted" });
@@ -64,10 +63,27 @@ exports.rejectReservation = async (req, res) => {
       return res.status(404).json({ message: "Reservation not found" });
     }
     console.log(reservation);
-
-    return res.json({ message: "Reservation rejected" });
+    await Reservation.findByIdAndDelete(req.params.id);
+    return res.json({ message: "Reservation rejected and delete" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
+//  Delete Reservation
+exports.deleteReservation = async (req, res) => {
+  try {
+    const resrvationId = req.params.id;
+    await Reservation.findByIdAndDelete(resrvationId);
+    res.status(201).json({
+      status: "success",
+    });
+  } catch (error) {
+    res.json({
+      status: "fail",
+      message: `❌🙎${error}❌🙎`,
+    });
   }
 };

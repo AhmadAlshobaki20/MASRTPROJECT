@@ -3,10 +3,12 @@ import React from "react";
 import { Avatar } from "react-native-elements";
 import { Feather, MaterialIcons, AntDesign, Entypo } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const StudentProfile = ({navigation}) => {
   const student = navigation.getParam("student");
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#4491b6" }}>
     <View style={styles.container}>
       <View style={styles.header}>
         <Avatar
@@ -84,6 +86,7 @@ const StudentProfile = ({navigation}) => {
         </TouchableOpacity>
       </View>
     </View>
+    </SafeAreaView>
   );
 };
 

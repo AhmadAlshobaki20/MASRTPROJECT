@@ -23,8 +23,8 @@ const ReservationPage = ({ navigation }) => {
   const teacher = navigation.getParam("tech");
 
   return (
-      <SafeAreaView style={{ backgroundColor: "#3b8bb7", flex: 1 }}>
-    <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+    <SafeAreaView style={{ backgroundColor: "#3b8bb7", flex: 1 }}>
+      <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
         <View style={Style.container}>
           <Text style={Style.textInput}>Reservation Page</Text>
           <View>
@@ -38,11 +38,13 @@ const ReservationPage = ({ navigation }) => {
               }}
               onDayPress={(date) => {
                 setSelectDate(date.dateString);
-                handleReservationForm(
-                  "createAt",
-                  new Date(date.dateString).toDateString()
-                );
-                console.log(new Date(date.dateString).toDateString());
+                if (new Date(date.dateString)) {
+                  handleReservationForm(
+                    "createAt",
+                    new Date(date.dateString).toDateString()
+                  );
+                }
+                console.log(typeof date.dateString+" "+Date(date.day));
               }}
               markedDates={{
                 [selectDate]: {
@@ -90,10 +92,10 @@ const ReservationPage = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-          <StudentButtomNav />
+        {/* <StudentButtomNav /> */}
         {visibleModel ? <Model /> : null}
-    </ScrollView>
-      </SafeAreaView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

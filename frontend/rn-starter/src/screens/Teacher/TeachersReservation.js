@@ -2,19 +2,19 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Avatar } from "react-native-elements";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
-import api from "../../api";
-import { DataContext } from "./context/context";
-import TeacherButtomNav from "../components/TeacherButtom";
+import api from "../../../api";
+import { DataContext } from "../context/context";
+import TeacherButtomNav from "../../components/TeacherButtom";
 import { SafeAreaView } from "react-native-safe-area-context";
-const Request = ({ navigation }) => {
-  const { reservations, Accept, Reject, getAllReservation } =
+const TeacherReservation = ({ navigation }) => {
+  const { reservations, getAllReservation } =
     useContext(DataContext);
 
   const teacherInfo = navigation.getParam("teacher");
   console.log("#@#@#@#@#@#@", teacherInfo);
 
   const specificReservation = reservations.filter((teacher) => {
-    if (teacher.status == "pending") {
+    if (teacher.status == "accepted") {
       return teacherInfo._id == teacher.teacherId;
     }
   });
@@ -22,6 +22,8 @@ const Request = ({ navigation }) => {
   useEffect(() => {
     getAllReservation();
   }, []);
+  const currentDate = new Date();
+
   return specificReservation.length ? (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#4bd7ac" }}>
       <View style={styles.container}>
@@ -42,23 +44,8 @@ const Request = ({ navigation }) => {
                   <Text>1:20 to 2:00</Text>
                   <Text>{item.createAt}</Text>
                 </View>
-                <View style={styles.btnInfoStyle}>
-                  <TouchableOpacity
-                    style={styles.acceptBtnStyle}
-                    onPress={() => {
-                      Accept(item._id);
-                    }}
-                  >
-                    <Text style={styles.btnTextStyle}>accept</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.rejectBtnStyle}
-                    onPress={() => {
-                      Reject(item._id);
-                    }}
-                  >
-                    <Text style={styles.btnTextStyle}>reject</Text>
-                  </TouchableOpacity>
+                <View>
+                  <Text style={{backgroundColor:"#57e8ad",color:"black"}}>accepted At {currentDate.getHours()}:{currentDate.getMinutes()}</Text>
                 </View>
               </View>
             );
@@ -73,7 +60,7 @@ const Request = ({ navigation }) => {
   );
 };
 
-export default Request;
+export default TeacherReservation;
 
 const styles = StyleSheet.create({
   container: {

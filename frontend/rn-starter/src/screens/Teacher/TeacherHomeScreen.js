@@ -11,8 +11,6 @@ import {
 import {} from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Avatar } from "react-native-elements/dist";
-import Reservation from "../../components/Reservation";
-import Rating from "../../components/Rating";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { DataContext } from "../context/context";
@@ -22,11 +20,10 @@ import Service from "../../components/Service";
 const TeacherHomeScreen = ({ navigation }) => {
   const { teacherInfo } = useContext(DataContext);
   return (
-    <ScrollView style={{ flexGrow: 1 }}>
-      <SafeAreaView style={{ backgroundColor: "#3fc7ac"}}>
+    <SafeAreaView style={{ backgroundColor: "#3fc7ac" }}>
+      <ScrollView style={{ flexGrow: 1 , backgroundColor:"white"}}>
         <View style={styles.container}>
           <View style={styles.header}>
-            {/* <View> */}
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={{ marginRight: 15 }}
@@ -100,11 +97,10 @@ const TeacherHomeScreen = ({ navigation }) => {
               >
                 <Text style={styles.textOfferStyle}>Welcome</Text>
                 <Text style={styles.textOfferStyle}>To our application</Text>
-                <Text style={styles.textOfferStyle}>Venom</Text>
+                <Text style={styles.textOfferStyle}>ShowBook</Text>
               </View>
             </LinearGradient>
           </View>
-
           <View>
             <Text style={styles.caption}>Features</Text>
             <View style={styles.featureStyle}>
@@ -128,15 +124,15 @@ const TeacherHomeScreen = ({ navigation }) => {
                 title="My Reservations"
                 image={require("../../../assets/schadual.png")}
                 onPress={() => {
-                  navigation.navigate("Request", { teacher: teacherInfo });
+                  navigation.navigate("TeacherReservation", { teacher: teacherInfo });
                 }}
               />
             </View>
           </View>
           <TeacherButtomNav teacherInfo={teacherInfo} navigation={navigation} />
         </View>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

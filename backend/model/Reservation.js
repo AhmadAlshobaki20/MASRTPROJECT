@@ -5,7 +5,10 @@ const reservationSchema = new mongoose.Schema({
   createAt: {
     type: String,
   },
-  status: String, // This can be 'pending', 'accepted', or 'rejected'
+  status: {
+    type: String,
+    default: "pending",
+  }, // This can be 'pending', 'accepted', or 'rejected'
   teacherId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Teacher", // Reference to the Teacher model

@@ -23,7 +23,7 @@ const firstSplash = ({ navigation }) => {
         style={Style.logoStyle}
         source={require("../../../assets/student.png")}
       />
-      <Text style={Style.textStyle}>Venom</Text>
+      <Text style={Style.textStyle}>ShowBook</Text>
       <Progress.Bar progress={prog} width={200} />
     </View>
   );
@@ -34,7 +34,7 @@ const Style = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:"white"
+    backgroundColor: "white",
   },
   logoStyle: {
     height: 120,

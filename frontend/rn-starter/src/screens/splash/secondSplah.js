@@ -9,15 +9,14 @@ import {
 import React from "react";
 
 const secondSplash = ({ navigation }) => {
-
   return (
     <View style={Style.container}>
       <Image
         style={Style.logoStyle}
         source={require("../../../assets/student.png")}
       />
-      <Text style={Style.textStyle}>Venom</Text>
-      <Text>Welcome to Venom Education App</Text>
+      <Text style={Style.textStyle}>ShowBook</Text>
+      <Text>Welcome to ShowBook Education App</Text>
       <TouchableOpacity
         style={Style.buttonStyle}
         title="next"

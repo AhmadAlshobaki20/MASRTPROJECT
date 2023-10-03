@@ -139,9 +139,9 @@ const DataProvider = ({ children }) => {
     try {
       const response = await api.post("/api/v1/teachers/login", loginInfo);
       await teacherAuthentication(response.data.token);
-      if (response.data.token && teacherInfo.status != "pending") {
+      if (response.data.token && teacherInfo.status == "accept") {
         navigation.navigate("TeacherHomeScreen");
-      } else {r
+      } else {
         return;
       }
     } catch (err) {
@@ -166,20 +166,38 @@ const DataProvider = ({ children }) => {
   };
 
   const Accept = async (resId) => {
-    const response = await api.patch(
-      `/api/v1/reservation/accept-reservation/${resId}`,
-      { status: "accepted" }
-    );
-    console.log(response.data);
+    try {
+      const response = await api.patch(
+        `/api/v1/reservation/accept-reservation/${resId}`,
+        { status: "accepted" }
+      );
+      console.log(response.data);
+      await getAllReservation();
+    } catch (error) {
+      console.log(error);
+    }
   };
   const Reject = async (resId) => {
-    const response = await api.patch(
-      `/api/v1/reservation/reject-reservation/${resId}`,
-      { status: "rejected" }
-    );
-    // console.log(response.data);
+    try {
+      const response = await api.patch(
+        `/api/v1/reservation/reject-reservation/${resId}`,
+        { status: "rejected" }
+      );
+      DeleteReservation(resId);
+      await getAllReservation();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  const DeleteReservation = async (resId) => {
+    try {
+      const response = await api.patch(`/api/v1/reservation/${resId}`);
+      await getAllReservation();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const dataToShare = {
     registerInfo,
     getAllTeachers,

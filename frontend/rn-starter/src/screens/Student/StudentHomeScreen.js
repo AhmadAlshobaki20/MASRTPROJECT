@@ -9,14 +9,11 @@ import {
 import {} from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Avatar } from "react-native-elements/dist";
-import Teacher from "../../components/Teacher";
-import Subject from "../../components/subject";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DataContext } from "../context/context";
 import { SafeAreaView } from "react-native-safe-area-context";
 import StudentButtomNav from "../../components/StudentButtom";
-import Ref from "../../components/ref";
 import Service from "../../components/Service";
 
 const StudentHomeScreen = ({ navigation }) => {
@@ -32,8 +29,8 @@ const StudentHomeScreen = ({ navigation }) => {
   //   setStudentInfo(JSON.parse(studentInfo));
   // };
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <SafeAreaView style={{ backgroundColor: "#3b8bb7" }}>
+    <SafeAreaView style={{ backgroundColor: "#3b8bb7", flex:1 }}>
+      <ScrollView style={{flex:1, backgroundColor:"white"}}>
         <View style={styles.container}>
           <View style={styles.header}>
             <TouchableOpacity
@@ -47,7 +44,7 @@ const StudentHomeScreen = ({ navigation }) => {
               />
             </TouchableOpacity>
             <View>
-              <Text>welcome to venom</Text>
+              <Text>welcome to ShowBook</Text>
               <Text style={styles.nameStyle}>{StudentInfo.username}</Text>
               <View style={styles.HeaderIcon}>
                 <TouchableOpacity
@@ -118,14 +115,14 @@ const StudentHomeScreen = ({ navigation }) => {
             <Text style={styles.caption}>Features</Text>
             <View style={styles.featureStyle}>
               <Service
-              image={require('../../../assets/1585587.jpg')}
+                image={require("../../../assets/1585587.jpg")}
                 title="Teachers"
                 onPress={() => {
                   navigation.navigate("StudentTeachersScreen");
                 }}
               />
               <Service
-              image={require('../../../assets/download.jpg')}
+                image={require("../../../assets/download.jpg")}
                 title="Subject"
                 onPress={() => {
                   navigation.navigate("");
@@ -133,8 +130,8 @@ const StudentHomeScreen = ({ navigation }) => {
               />
             </View>
             <View style={styles.featureStyle}>
-            <Service
-              image={require('../../../assets/refeneces.png')}
+              <Service
+                image={require("../../../assets/refeneces.png")}
                 title="References"
                 onPress={() => {
                   navigation.navigate("");
@@ -142,10 +139,10 @@ const StudentHomeScreen = ({ navigation }) => {
               />
             </View>
           </View>
-          <StudentButtomNav />
+          <StudentButtomNav navigation={navigation}/>
         </View>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

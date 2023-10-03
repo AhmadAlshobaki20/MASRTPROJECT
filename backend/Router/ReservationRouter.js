@@ -17,4 +17,6 @@ router
   .route("/reject-reservation/:id")
   .patch(ReservationController.rejectReservation);
 
+router.route("/:id").delete(ReservationController.deleteReservation);
+
 module.exports = router;
